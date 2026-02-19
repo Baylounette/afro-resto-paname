@@ -1,21 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
 
 :root {
-  /* Palette Afro-Chic */
-  --ebony: #080808;
-  --ebony-light: #121212;
-  --gold: #D4AF37;
-  --gold-glow: rgba(212, 175, 55, 0.3);
-  --ochre: #C4421A;
-  --sienna: #A0522D;
-  --malachite: #004E32;
-  --ivory: #F9F6EE;
-  --text-dim: #A0A0A0;
-
-  /* Gradations */
-  --glass: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F5D76E 50%, #B8860B 100%);
+  /* Retour à la palette chaude et vibrante */
+  --amber: #E8A020;
+  --amber-light: #F5C842;
+  --amber-dark: #B07010;
+  --rust: #C4421A;
+  --rust-light: #E05A2B;
+  --earth: #1F1408;
+  /* Fond très sombre mais chaud */
+  --earth-card: #2A1B0C;
+  --forest: #2D5016;
+  --cream: #FAF3E0;
+  --text-primary: #FAF3E0;
+  --text-secondary: #D4B896;
+  --border: rgba(232, 160, 32, 0.15);
 }
 
 * {
@@ -26,234 +25,213 @@
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background-color: var(--ebony);
-  color: var(--ivory);
-  overflow-x: hidden;
+  background-color: var(--earth);
+  color: var(--text-primary);
   line-height: 1.6;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(196, 66, 26, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(45, 80, 22, 0.1) 0%, transparent 40%);
 }
 
-/* ─── FOND TEXTURÉ ─── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 30-15 30L15 30z' fill='%23ffffff' fill-opacity='0.02'/%3E%3C/svg%3E");
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* ─── TYPOGRAPHIE ─── */
+/* ─── TYPOGRAPHY ─── */
 h1,
 h2,
-h3,
-.serif {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 700;
+h3 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: -0.02em;
 }
 
-/* ─── HERO SECTION ─── */
+/* ─── HERO ─── */
 .hero {
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  padding: 8rem 2rem 6rem;
   text-align: center;
-  padding: 0 1rem;
-  background: radial-gradient(circle at center, rgba(196, 66, 26, 0.1) 0%, transparent 70%);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #150D05, var(--earth));
 }
 
-.hero-content {
-  max-width: 1000px;
-  z-index: 10;
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  opacity: 0.3;
 }
 
-.hero-tagline {
-  font-size: 0.9rem;
+.hero-tag {
+  color: var(--amber);
   text-transform: uppercase;
-  letter-spacing: 0.4em;
-  color: var(--gold);
-  margin-bottom: 2rem;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  margin-bottom: 1.5rem;
   display: block;
 }
 
 .hero-title {
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  line-height: 0.9;
-  margin-bottom: 2.5rem;
-  background: var(--gold-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  line-height: 1;
+  margin-bottom: 2rem;
+  color: var(--cream);
 }
 
-.hero-desc {
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: var(--text-dim);
-  max-width: 600px;
-  margin: 0 auto;
+.hero-title span {
+  color: var(--amber);
+  font-style: italic;
 }
 
 /* ─── FILTRES ─── */
-.filter-nav {
-  position: sticky;
-  top: 1rem;
-  z-index: 100;
+.filters {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 1.5rem;
-  margin-bottom: 4rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(31, 20, 8, 0.8);
+  backdrop-filter: blur(12px);
 }
 
-.filter-pill {
-  background: var(--glass);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  color: var(--ivory);
-  padding: 0.6rem 1.4rem;
-  border-radius: 100px;
+.filter-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
   font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.3s ease;
 }
 
-.filter-pill:hover,
-.filter-pill.active {
-  background: var(--gold);
-  color: var(--ebony);
-  border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px var(--gold-glow);
+.filter-btn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
 }
 
-/* ─── CONTAINER ─── */
+.filter-btn.active {
+  background: var(--amber);
+  color: var(--earth);
+  border-color: var(--amber);
+}
+
+/* ─── GRID ─── */
 .container {
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-/* ─── GRID & CARDS ─── */
-.restaurants-grid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 3rem;
-  padding-bottom: 10rem;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 2.5rem;
+  padding-bottom: 6rem;
 }
 
+/* ─── CARD ─── */
 .card {
-  position: relative;
-  background: var(--ebony-light);
-  border-radius: 2px;
-  /* Carré luxe */
-  padding: 3rem;
-  border-left: 1px solid var(--glass-border);
-  transition: all 0.5s ease;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(135deg, transparent 50%, rgba(212, 175, 55, 0.05) 50%);
-  transition: all 0.5s ease;
+  background: var(--earth-card);
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid var(--border);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  border-left-color: var(--gold);
-  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.8);
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--amber-light);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.card:hover::before {
-  width: 150px;
-  height: 150px;
-  background: linear-gradient(135deg, transparent 50%, rgba(212, 175, 55, 0.1) 50%);
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.card-emoji {
+  font-size: 2.5rem;
 }
 
 .card-arr {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  background: rgba(196, 66, 26, 0.15);
+  color: var(--rust-light);
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  border: 1px solid rgba(196, 66, 26, 0.2);
 }
 
-.card-title {
-  font-size: 2.8rem;
-  line-height: 1;
-  margin-bottom: 1.5rem;
-  color: var(--ivory);
+.card-name {
+  font-size: 2.2rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
 }
 
 .card-cuisine {
+  color: var(--amber);
+  font-weight: 700;
   font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--ochre);
-  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.card-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
   margin-bottom: 2rem;
-}
-
-.card-info {
-  margin-bottom: 2.5rem;
-}
-
-.card-label {
-  display: block;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 0.5rem;
-}
-
-.card-signature {
-  font-size: 1.2rem;
-  color: var(--gold);
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
+  flex-grow: 1;
 }
 
 .card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid var(--glass-border);
+  border-top: 1px solid var(--border);
   padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
-.card-address {
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  max-width: 200px;
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.card-meta strong {
+  color: var(--amber-light);
 }
 
 .card-price {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
-  color: var(--ivory);
+  font-weight: 800;
+  color: var(--cream);
 }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1rem;
+  }
+
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 
-  .restaurants-grid {
+  .grid {
     grid-template-columns: 1fr;
-  }
-
-  .card {
-    padding: 2rem;
   }
 }

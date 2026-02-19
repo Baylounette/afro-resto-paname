@@ -21,59 +21,68 @@ export default function Home() {
 
   return (
     <>
-      {/* ─── Hero Section ─── */}
       <section className="hero">
-        <div className="hero-content">
-          <span className="hero-tagline">L'Élite de la Gastronomie Africaine</span>
-          <h1 className="hero-title">Panthéon<br />Afro-Parisien</h1>
-          <p className="hero-desc">Une sélection exclusive des dix tables qui redéfinissent l'art culinaire africain au cœur de la capitale.</p>
+        <div className="container">
+          <span className="hero-tag">Guide Gastronomique</span>
+          <h1 className="hero-title">
+            Les meilleures tables <span>africaines</span> de Paris
+          </h1>
+          <p className="hero-desc">
+            Une sélection de 10 pépites culinaires authentiques pour voyager du Sénégal à l'Éthiopie sans quitter la Ville Lumière.
+          </p>
         </div>
       </section>
 
-      {/* ─── Navigation & Filtres ─── */}
-      <nav className="filter-nav">
+      <nav className="filters">
         {cuisines.map((c) => (
           <button
             key={c}
-            className={`filter-pill ${activeFilter === c ? "active" : ""}`}
+            className={`filter-btn ${activeFilter === c ? "active" : ""}`}
             onClick={() => setActiveFilter(c)}
           >
-            {c === "all" ? "Toutes les escales" : c}
+            {c === "all" ? "Toutes les cuisines" : c}
           </button>
         ))}
       </nav>
 
-      {/* ─── Grille de Restaurants ─── */}
       <main className="container">
-        <div className="restaurants-grid">
+        <div className="grid">
           {filtered.map((r) => (
             <article key={r.id} className="card">
-              <div className="card-arr">
-                <span>PARIS</span>
-                <span>•</span>
-                <span>{r.arrondissement}E</span>
+              <div className="card-top">
+                <span className="card-emoji" role="img" aria-label={r.country}>
+                  {r.emoji}
+                </span>
+                <span className="card-arr">{r.arrondissement}E ARR.</span>
               </div>
 
-              <h2 className="card-title serif">{r.name}</h2>
+              <h2 className="card-name">{r.name}</h2>
               <div className="card-cuisine">{r.cuisine} — {r.country}</div>
 
-              <div className="card-info">
-                <span className="card-label">Plat Signature</span>
-                <span className="card-signature">{r.speciality}</span>
-              </div>
+              <p className="card-desc">{r.description}</p>
 
               <div className="card-footer">
-                <div className="card-address">{r.address}</div>
-                <div className="card-price">{r.priceRange}</div>
+                <div className="card-meta">
+                  <span>🍽️</span>
+                  <span>Spécialité : <strong>{r.speciality}</strong></span>
+                </div>
+                <div className="card-meta">
+                  <span>📍</span>
+                  <span>{r.address}</span>
+                </div>
+                <div className="card-meta">
+                  <span>💰</span>
+                  <span className="card-price">Gamme de prix : {r.priceRange}</span>
+                </div>
               </div>
             </article>
           ))}
         </div>
       </main>
 
-      <footer style={{ textAlign: "center", padding: "4rem", color: "#444", borderTop: "1px solid #111" }}>
-        <p className="serif" style={{ fontSize: "1.2rem", fontStyle: "italic", marginBottom: "1rem" }}>L'Afrique s'invite à votre table.</p>
-        <p style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>© 2025 Afro-Resto Paname — Édition Limitée</p>
+      <footer style={{ padding: "4rem 2rem", textAlign: "center", background: "#150D05", borderTop: "1px solid rgba(232, 160, 32, 0.1)" }}>
+        <p style={{ color: "var(--amber)", fontWeight: "700", marginBottom: "1rem" }}>Afro-Resto Paname</p>
+        <p style={{ color: "var(--text-secondary)", fontSize: "0.85rem" }}>Découvrez la richesse culinaire de l'Afrique au cœur de Paris.</p>
       </footer>
     </>
   );
